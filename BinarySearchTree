@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PracticeWork
+{
+    class BinarySearchTree
+    {
+        private BinaryTreeNode root;
+
+        public void addValue(int data)
+        {
+            var newNode = new BinaryTreeNode();
+            newNode.data = data;
+
+            if (root == null)
+            {
+                root = newNode;
+            }
+            else
+            {
+                traverseTree(root, newNode);
+            }
+
+        }
+        public void traverseTree(BinaryTreeNode current, BinaryTreeNode newNode)
+        {
+            if (current.left == null && newNode.data <= current.data)
+            {
+                current.left = newNode;
+            }
+            else if (current.right == null && newNode.data > current.data)
+            {
+                current.right = newNode;
+            }
+            else
+            {
+                if (newNode.data <= current.data)
+                {
+                    traverseTree(current.left, newNode);
+                }
+                else
+                {
+                    traverseTree(current.right, newNode);
+                }
+            }
+        }
+
+    }
+
+    class BinaryTreeNode
+    {
+        public int data;
+        public BinaryTreeNode left;
+        public BinaryTreeNode right;
+    }
+}
